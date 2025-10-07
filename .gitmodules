@@ -1,0 +1,9 @@
+[submodule "maven_build_sys"]
+	path = maven_build_sys
+	url = git@github.com:chenzongxiong/maven_build_sys.git
+[submodule "spoon"]
+	path = spoon
+	url = git@github.com:chenzongxiong/spoon.git
+[submodule "syringe"]
+	path = syringe
+	url = git@github.com:chenzongxiong/syringe.git
