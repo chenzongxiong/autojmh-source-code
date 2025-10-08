@@ -76,6 +76,7 @@ public class DataContextInstrumenter implements Configurable {
         if (detector.getElementsDetectedCount() == 0) log.warning("No snippet for benchmarking detected");
 
         executionResult = EXECUTION_OK;
+        // We run it offline
         try {
             l.runTests(true);
         } catch (Exception e) {

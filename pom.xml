@@ -9,18 +9,29 @@
     <version>0.0.1</version>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.2</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
+        </plugin>
 
+        <!-- Shade plugin to bundle dependencies -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <configuration>
+            <mainClass>fr.inria.autojmh.tool.Tool</mainClass>
+            <arguments>
+              <argument>${project.basedir}/config.properties</argument>
+            </arguments>
+          </configuration>
+        </plugin>
+      </plugins>
     </build>
 
   <dependencyManagement>
@@ -28,7 +39,7 @@
       <dependency>
         <groupId>org.eclipse.jdt</groupId>
         <artifactId>org.eclipse.jdt.core</artifactId>
-        <version>3.18.0</version>
+        <version>3.12.2</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -99,6 +110,4 @@
         </dependency>
 
     </dependencies>
-
-
 </project>

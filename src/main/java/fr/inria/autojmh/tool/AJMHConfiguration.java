@@ -12,59 +12,59 @@ import java.util.Properties;
  */
 public class AJMHConfiguration {
 
-    private int methodExtractionDepth;
+    public int methodExtractionDepth;
 
     /**
      * Path to the input project to benchmark
      */
-    private String inputProjectPath;
+    public String inputProjectPath;
 
     /**
      * Path where the input project sources
      */
-    private String inputProjectSrcPath;
+    public String inputProjectSrcPath;
 
     /**
      * Path where the input project test
      */
-    private String inputProjectTestPath;
+    public String inputProjectTestPath;
 
     /**
      * Working directory to store all intermediate state, runtime context, etc.
      */
-    private String workingDir;
+    public String workingDir;
 
     /**
      * Name of the package to which all benchmarks will belong to
      */
-    private String packageName = "fr.inria.autojmh.benchmarks";
+    public String packageName = "fr.inria.autojmh.benchmarks";
 
     /**
      * Path where the generation is going to be stored
      */
-    private String generationOutputPath;
+    public String generationOutputPath;
 
     /**
      * Path to the custom templates to use. Default templates used if not specified
      */
-    private String templatePath;
+    public String templatePath;
 
     /**
      * Path to the generated sources of the benchmark(output) project
      */
-    private String generatedSrcPath;
-
+    public String generatedSrcPath;
+    public String cp;
     /**
      * Path to the generated test of the benchmark(output) project
      */
-    private String generatedTestPath;
+    public String generatedTestPath;
 
-    private static final String RUNTIME_CONTEXT = "log";
+    public static final String RUNTIME_CONTEXT = "log";
 
-    private Preconditions preconditions;
+    public Preconditions preconditions;
 
-    private boolean mustHaveInitdata = true;
-    private boolean printRejected;
+    public boolean mustHaveInitdata = true;
+    public boolean printRejected;
 
     /**
      * Get the path where the context data is stored
@@ -91,12 +91,19 @@ public class AJMHConfiguration {
         c.setInputProjectPath(p.getProperty("projectDir"));
         c.setGenerationOutputPath(p.getProperty("outputDir"));
         c.setWorkingDir(p.getProperty("workingDir"));
+        c.inputProjectSrcPath = p.getProperty("srcDir");
+        c.inputProjectTestPath = p.getProperty("testDir");
+        c.cp = p.getProperty("cp");
+        System.out.println("srcDir: " + c.inputProjectSrcPath);
+        System.out.println("testDir: " + c.inputProjectTestPath);
         return c;
     }
 
     public AJMHConfiguration() {
-        setInputProjectSrcPath("/src/main/java");
-        setInputProjectTestPath("/src/test/java");
+        // this.inputProjectSrcPath = "/home/jovyan/zxchen/llm-microbenchmark-selections/projects/zipkin/zipkin";
+        // this.inputProjectTestPath = "/home/jovyan/zxchen/llm-microbenchmark-selections/projects/zipkin/zipkin-junit";
+        // setInputProjectSrcPath("/zipkin/src/main/java");
+        // setInputProjectTestPath("/zipkin-junit/src/test/java");
         setGeneratedOutputSrcPath("src/main/java");
         setGeneratedOutputTestPath("src/test/java");
         try {

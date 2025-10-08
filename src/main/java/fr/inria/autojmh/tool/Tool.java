@@ -13,6 +13,7 @@ public class Tool {
         AJMHConfiguration configuration = AJMHConfiguration.fromArgs(args);
         AJMHGenerator generator = new AJMHGenerator(configuration);
         generator.generate();
+        System.out.println("----------In Tool-------------------");
     }
 
 }

@@ -1,4 +1,4 @@
-cd maven_build_sys && JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 mvn install -DskipTests=true
-cd syringe && JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 mvn install -DskipTests=true
-cd spoon && git checkout 8a8ef93b347312720d7d021d81dad1b44a9e4754
-mvn package -DskipTests
+# java -cp target/autojmh-0.0.1.jar fr.inria.autojmh.tool.Tool config.properties
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 \
+# JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 \
+    mvn clean package -DskipTests exec:java

@@ -79,18 +79,18 @@ public class AJMHGenerator implements BenchmakGenerator {
     }
 
     private boolean checkInputPath() {
-        if (!(new File(conf.getInputProjectPath()).exists())) {
-            log.fatal("The input path " + conf.getInputProjectPath() + " can't be accessed.");
-            return false;
-        }
-        if (!(new File(conf.getInputProjectPath() + conf.getInputProjectSrcPath()).exists())) {
-            log.fatal("The input source path " + conf.getInputProjectSrcPath() + " can't be accessed.");
-            return false;
-        }
-        if (!(new File(conf.getInputProjectPath() + conf.getInputProjectTestPath()).exists())) {
-            log.fatal("The input test path " + conf.getInputProjectTestPath() + " can't be accessed.");
-            return false;
-        }
+        // if (!(new File(conf.getInputProjectPath()).exists())) {
+        //     log.fatal("The input path " + conf.getInputProjectPath() + " can't be accessed.");
+        //     return false;
+        // }
+        // if (!(new File(conf.getInputProjectPath() + conf.getInputProjectSrcPath()).exists())) {
+        //     log.fatal("The input source path " + conf.getInputProjectSrcPath() + " can't be accessed.");
+        //     return false;
+        // }
+        // if (!(new File(conf.getInputProjectPath() + conf.getInputProjectTestPath()).exists())) {
+        //     log.fatal("The input test path " + conf.getInputProjectTestPath() + " can't be accessed.");
+        //     return false;
+        // }
         return true;
     }
 
@@ -98,13 +98,15 @@ public class AJMHGenerator implements BenchmakGenerator {
      * Generates the benchmark suite
      */
     public void generate() {
+        System.out.println("Run Generator");
+
         try {
             if (!checkInputPath()) return;
 
             //Clean working and result's dir
             log.info("Cleaning working dirs");
-            cleanWorkingDir();
-            cleanResultsDir();
+            // cleanWorkingDir();
+            // cleanResultsDir();
 
             //Build the output project
             log.info("Building output POM file");
@@ -115,6 +117,18 @@ public class AJMHGenerator implements BenchmakGenerator {
             log.info("Collecting tagglets");
             Map<String, List<Tagglet>> tagglets = null;
             if (customDetector == null) tagglets = collectTagglets();
+
+            for (Map.Entry<String, List<Tagglet>> e : tagglets.entrySet()) {
+                System.out.println("Key: " + e.getKey());
+                for (Tagglet t : e.getValue()) {
+                    System.out.println("tagglet: " + t.toString());
+                }
+            }
+            int total = 0;
+            for (List<Tagglet> list : tagglets.values()) {
+                total += list.size();
+            }
+            System.out.println("Total Tagglets: " + total);
 
             //Instrument all tagged points to record the data context
             log.info("Instrumenting data context");
