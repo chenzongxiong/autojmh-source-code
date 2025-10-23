@@ -51,12 +51,12 @@ public class DataContextInstrumenter implements Configurable {
     private Preconditions preconditions;
 
     public void execute() throws Exception {
+        System.out.println("datacontext instrumenter.execute");
         Configuration confSrc = new Configuration(srcPath);
 
         //Detect tagged statement
         if (detector == null) detector = new TaggedStatementDetector();
         confSrc.addDetector(detector);
-
         //Inject them with data context recording injectors
         confSrc.addInjector(TaggedStatementDetector.SNIPPET_DETECTED, new DataContextInjector());
 

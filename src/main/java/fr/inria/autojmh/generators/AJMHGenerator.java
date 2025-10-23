@@ -118,18 +118,16 @@ public class AJMHGenerator implements BenchmakGenerator {
             Map<String, List<Tagglet>> tagglets = null;
             if (customDetector == null) tagglets = collectTagglets();
 
-            for (Map.Entry<String, List<Tagglet>> e : tagglets.entrySet()) {
-                System.out.println("Key: " + e.getKey());
-                for (Tagglet t : e.getValue()) {
-                    System.out.println("tagglet: " + t.toString());
-                }
-            }
+            // for (Map.Entry<String, List<Tagglet>> e : tagglets.entrySet()) {
+            //     System.out.println("Key: " + e.getKey());
+            //     for (Tagglet t : e.getValue()) {
+            //         System.out.println("tagglet: " + t.toString());
+            //     }
+            // }
             int total = 0;
             for (List<Tagglet> list : tagglets.values()) {
                 total += list.size();
             }
-            System.out.println("Total Tagglets: " + total);
-
             //Instrument all tagged points to record the data context
             log.info("Instrumenting data context");
             List<BenchSnippet> snippets = recordDataContext(tagglets);
@@ -153,10 +151,10 @@ public class AJMHGenerator implements BenchmakGenerator {
 
             snippets = complyingSnippets;
 
-            //Clean the instrumentation from the snippets
+            // Clean the instrumentation from the snippets
             cleanInstrumentation(snippets);
 
-            //Finally generate the benchmarks
+            // Finally generate the benchmarks
             runGenerators(new MainClassGenerator(), snippets);
             log.info("Main file generated");
 

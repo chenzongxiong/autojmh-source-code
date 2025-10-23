@@ -22,12 +22,14 @@ public class TestForMicrobenchmarkGenerator extends BaseGenerator {
     private Logger log = Logger.getLogger(TestForMicrobenchmarkGenerator.class);
 
     public void generate(BenchSnippet snippet) {
-
-        if (!getChooser().existsDataFile(dataContextPath, snippet.getMicrobenchmarkClassName())) return;
-
+        // System.out.println("generate test for microbenchmark generator: " + dataContextPath + ", " + snippet.getMicrobenchmarkClassName());
+        // if (!getChooser().existsDataFile(dataContextPath, snippet.getMicrobenchmarkClassName())) return;
+        // System.out.println("generate test for microbenchmark generator 2");
         try {
             HashMap<String, Object> input = new HashMap<String, Object>();
-            input.put("data_file_path", getChooser().chooseAfter(snippet.getMicrobenchmarkClassName()));
+            String data_file_path = getChooser().chooseAfter(snippet.getMicrobenchmarkClassName());
+            System.out.println("data_file_path: " + data_file_path);
+            input.put("data_file_path",data_file_path);
             input.put("types", PRIMITIVES);
             input.put("package_name", packageName);
             input.put("generator", this);

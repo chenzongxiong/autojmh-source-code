@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
+import java.util.HashMap;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import static fr.inria.autojmh.snippets.modelattrib.MethodAttributes.visibility;
 import static fr.inria.autojmh.snippets.modelattrib.VariableAccessAttributes.*;
@@ -302,7 +305,12 @@ public class BenchSnippet implements Configurable {
     }
 
     public boolean meetsPreconditions() {
-        if (meetsPreconditions == null) meetsPreconditions = getPreconditions().checkSnippet(this);
+        if (meetsPreconditions == null) meetsPreconditions =
+getPreconditions().checkSnippet(this);
+        HashMap<String, Integer> rejectionCause = getPreconditions().getRejectionCause();
+        for (HashMap.Entry<String, Integer> entry : rejectionCause.entrySet()) {
+            System.out.println("Rejection Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
         return meetsPreconditions;
     }
 

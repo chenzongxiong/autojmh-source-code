@@ -5,10 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>${groupId}</groupId>
-    <artifactId>auto-generated-benchmarks</artifactId>
+    <artifactId>benchmarks</artifactId>
     <version>1.0</version>
 
-    <project>
       <build>
         <plugins>
           <plugin>
@@ -22,19 +21,18 @@
           </plugin>
         </plugins>
       </build>
-    </project>
 
     <dependencies>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
-            <version>1.11-SNAPSHOT</version>
+            <version>1.37-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-generator-annprocess</artifactId>
-            <version>1.11-SNAPSHOT</version>
+            <version>1.37-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 

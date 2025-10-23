@@ -42,6 +42,7 @@ public class SelectionFileWalker extends SimpleFileVisitor<Path> {
      */
     public void walkDir(String absolutePath) throws IOException {
         this.rootPath = Paths.get(new File(absolutePath).getAbsolutePath());
+        // System.out.println("this root path: " + this.rootPath);
         Files.walkFileTree(this.rootPath, this);
     }
 
@@ -57,12 +58,16 @@ public class SelectionFileWalker extends SimpleFileVisitor<Path> {
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
             throws IOException {
         if ( !file.toString().toLowerCase().endsWith(".java") ) return FileVisitResult.CONTINUE;
-
+        // System.out.println("visit file: " + file);
         try (BufferedReader br = new BufferedReader(new FileReader(file.toFile()))) {
             String className = getClassName(file);
+            // System.out.println("Classname: " + className);
             List<Tagglet> t = getFinder().collect(br, className, 1);
             if (t != null && t.size() > 0) getTagglets().put(className, t);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("exception triggered" + file);
             e.printStackTrace();
         }
         return FileVisitResult.CONTINUE;

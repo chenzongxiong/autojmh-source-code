@@ -53,7 +53,7 @@ public class MicrobenchmarkGenerator extends BaseGenerator {
      * @throws java.io.FileNotFoundException
      */
     public void generate(BenchSnippet snippet) {
-
+        // System.out.println("Microbenchmark generate ==============================");
         snippet.setPrinterToAJMH();
 
         if (mustHaveInitData) {
@@ -61,7 +61,7 @@ public class MicrobenchmarkGenerator extends BaseGenerator {
                     !getChooser().existsDataFile(dataContextPath, snippet.getMicrobenchmarkClassName()))
                 return;
         }
-
+        // System.out.println("Microbenchmark generate ============================== 2");
         //Obtain the list of imports from the variables and in the mean time, modify its priter
         Set<String> imports = new HashSet<>();
         for (TemplateInputVariable v : snippet.getTemplateAccessesWrappers()) {
@@ -202,4 +202,3 @@ public class MicrobenchmarkGenerator extends BaseGenerator {
         this.chooser = chooser;
     }
 }
-

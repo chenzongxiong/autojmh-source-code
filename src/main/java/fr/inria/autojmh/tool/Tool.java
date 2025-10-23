@@ -10,8 +10,12 @@ import fr.inria.autojmh.generators.AJMHGenerator;
 public class Tool {
 
     public static void main(String[] args) throws Exception {
-        AJMHConfiguration configuration = AJMHConfiguration.fromArgs(args);
-        AJMHGenerator generator = new AJMHGenerator(configuration);
+        AJMHConfiguration conf = AJMHConfiguration.fromArgs(args);
+        // conf.setInputProjectPath("C:\\MarcelStuff\\DATA\\PHD\\jmhrealbugs");
+        // conf.setWorkingDir("C:\\MarcelStuff\\DATA\\PHD\\jmhrealbugs_work");
+        // conf.setGenerationOutputPath("C:\\MarcelStuff\\DATA\\PHD\\jmhrealbugs-benchmark");
+
+        AJMHGenerator generator = new AJMHGenerator(conf);
         generator.generate();
         System.out.println("----------In Tool-------------------");
     }

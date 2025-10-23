@@ -53,6 +53,7 @@ public class TaggletFinder {
         int i = 0;
         while (i < line.length()) {
             i += benchPatrn.search(line.substring(i));
+            // System.out.println("Bench_this: " + BENCH_THIS + ", line: " + line);
             if (line.substring(i).startsWith(BENCH_THIS)) {
                 tagglets.add(new Tagglet(TaggletKind.BENCH_THIS, lineNumber, i, className));
                 i += BENCH_THIS.length();

@@ -81,9 +81,8 @@ public class DataContextFileChooser {
     }
 
     private String chooseFileFor(String className, boolean after) throws IOException {
-
         String c = (after ? "after-" + className : className).replace("_", "-") + "--";
-
+        System.out.println("choose file for: " + className + ", after: " + after + ", data context path: " + dataContextPath + ", c: " + c);
         for (File file : new File(dataContextPath).listFiles() ) {
             if ( file.getName().startsWith(c) ) {
                 return file.getName();
@@ -121,9 +120,11 @@ public class DataContextFileChooser {
             File[] files = new File(dataPath).listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
+                    // System.out.println("accept: fileName: " + fileName + ", name: " + name);
                     return name.startsWith(fileName) || name.startsWith("after-" + fileName);
                 }
             });
+            // System.out.println("existsDataFile: " + fileName + ", dataPath: " + dataPath + ", files: " + files.length);
             return files != null && files.length > 0;
         } catch (Exception e) {
             //log.error("Unexpected exception at existDataFile. ", e);

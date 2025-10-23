@@ -44,11 +44,12 @@ public class TaggletCollector implements Configurable {
             SelectionFileWalker walker = new SelectionFileWalker();
             try {
                 //Collect in the source dir
-                // System.out.println("src_path: " + conf.getInputProjectPath() + conf.getInputProjectSrcPath());
-                // System.out.println("test_path: " + conf.getInputProjectPath() +  conf.getInputProjectTestPath());
+                System.out.println("src_path: " + conf.getInputProjectPath() + conf.getInputProjectSrcPath());
+                System.out.println("test_path: " + conf.getInputProjectPath() +  conf.getInputProjectTestPath());
                 walker.walkDir(conf.getInputProjectPath() + conf.getInputProjectSrcPath());
                 //And collect in the test dir as well
                 walker.walkDir(conf.getInputProjectPath() + conf.getInputProjectTestPath());
+                System.out.println("Walker walkDir ========================================");
             } catch (IOException e) {
                 log.fatal("Could not collect tagglets: " + e.toString());
                 return null;
